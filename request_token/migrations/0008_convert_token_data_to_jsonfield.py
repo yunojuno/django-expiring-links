@@ -14,11 +14,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='requesttoken',
-            name='data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(blank=True, default={}, help_text='Custom data add to the token, but not encoded (must be fetched from DB).', null=True),
-        ),
-        migrations.AlterField(
             model_name='requesttokenlog',
             name='token',
             field=models.ForeignKey(help_text='The RequestToken that was used.', on_delete=models.deletion.CASCADE, related_name='logs', to='request_token.RequestToken'),

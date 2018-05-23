@@ -4,3 +4,4 @@ Django
 PyJWT
 sqlparse
 psycopg2
+jsonfield

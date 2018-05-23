@@ -6,12 +6,12 @@ import logging
 
 from django.conf import settings
 from django.contrib.auth import login
-from django.contrib.postgres.fields import JSONField
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now as tz_now
 
+from jsonfield import JSONField
 from jwt.exceptions import InvalidAudienceError
 
 from .exceptions import MaxUseError
