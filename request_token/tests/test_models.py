@@ -226,6 +226,12 @@ class RequestTokenTests(TestCase):
         token.used_to_date = token.max_uses
         self.assertRaises(MaxUseError, token.validate_max_uses)
 
+    def test_validate_max_uses_disabled(self):
+        token = RequestToken(max_uses=0, used_to_date=0)
+        token.validate_max_uses()
+        token.used_to_date = 1
+        token.validate_max_uses()
+
     def test__auth_is_anonymous(self):
         factory = RequestFactory()
         middleware = SessionMiddleware()

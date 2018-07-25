@@ -231,7 +231,7 @@ class RequestToken(models.Model):
         Raises MaxUseError if invalid.
 
         """
-        if self.used_to_date >= self.max_uses:
+        if self.max_uses and self.used_to_date >= self.max_uses:
             raise MaxUseError(
                 'RequestToken [%s] has exceeded max uses' % self.id
             )
