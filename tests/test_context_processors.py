@@ -3,6 +3,7 @@ from unittest import mock
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpRequest
 from django.test import TestCase
+
 from request_token.context_processors import request_token
 from request_token.models import RequestToken
 

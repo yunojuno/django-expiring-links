@@ -2,6 +2,7 @@ from unittest import mock
 
 from django.template import TemplateDoesNotExist
 from django.test import TestCase
+
 from request_token.apps import ImproperlyConfigured, check_template
 
 

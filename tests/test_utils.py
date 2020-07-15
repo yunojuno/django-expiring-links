@@ -5,6 +5,7 @@ from django.test import TestCase
 from jwt import decode as jwt_decode
 from jwt import encode as jwt_encode
 from jwt.exceptions import DecodeError, InvalidAlgorithmError, MissingRequiredClaimError
+
 from request_token.utils import MANDATORY_CLAIMS, decode, encode, to_seconds
 
 

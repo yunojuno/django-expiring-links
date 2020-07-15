@@ -1,8 +1,9 @@
 from django.conf import settings
-from django.urls import path
-from django.contrib import admin
-from .views import decorated, roundtrip, undecorated
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path
+
+from .views import decorated, roundtrip, undecorated
 
 app_name = "tests"
 

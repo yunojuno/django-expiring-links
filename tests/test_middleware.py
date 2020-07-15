@@ -7,6 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse
 from django.test import RequestFactory, TestCase
 from jwt import exceptions
+
 from request_token.middleware import RequestTokenMiddleware
 from request_token.models import RequestToken
 from request_token.settings import JWT_QUERYSTRING_ARG

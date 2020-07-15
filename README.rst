@@ -19,7 +19,7 @@ This app currently requires the use of PostgreSQL.
 Compatibility
 =============
 
-This library is now Python3 and Django1.11 and above only.
+This library is now Python3 and Django 2.0 and above only.
 
 Background
 ==========
@@ -69,7 +69,7 @@ the ``login_mode`` attribute of a request token:
 
 1. Public link with payload
 2. Single authenticated request
-3. Auto-login
+3. x Auto-login DEPRECATED - see https://github.com/yunojuno/django-magic-link
 
 **Public Link** (``RequestToken.LOGIN_MODE_NONE``)
 
@@ -131,24 +131,18 @@ receive a 403 response.
 
 **Auto-login** (``RequestToken.LOGIN_MODE_SESSION``)
 
-This is the nuclear option, and must be treated with extreme care. Using a
-Session token will automatically log the user in for an entire session, giving
-the user who clicks on the link full access the token user's account. This is
-useful for automatic logins. A good example of this is the email login process
-on medium.com, which takes an email address (no password) and sends out a login
-link.
+**UPDATE**
 
-Session tokens have a default expiry of ten minutes.
+This mode has been removed. In its current implementation it suffers from accidental
+expiry of the token, typically by 'intelligent' email services / clients that ping
+links in emails, and thereby expire the token. The functionality has been replaced
+by a library (https://github.com/yunojuno/django-magic-link) specifically designed
+for this use case.
 
-.. code:: python
-
-    # this token will log in as the given user for the entire session -
-    # NB use with caution.
-    token = RequestToken.objects.create_token(
-        scope="foo",
-        login_mode=RequestToken.LOGIN_MODE_SESSION,
-        user=User.objects.get(username="hugo")
-    )
+If you must continue to support session tokens, you can override this deprecation by
+setting the ``REQUEST_TOKEN_ENABLE_SESSION_TOKENS`` value. However, please be aware
+that a future update will include a data migration that will immediately disable all
+session tokens, and remove the functionality entirely.
 
 Implementation
 ==============
@@ -306,9 +300,7 @@ requests, defaults to **rt**.
 
 * ``REQUEST_TOKEN_EXPIRY``
 
-Session tokens have a default expiry interval, specified in minutes.
-The primary use case (above) dictates that the expiry should be no longer
-than it takes to receive and open an email, defaults to **10** (minutes).
+Defaults to **10** (minutes).
 
 * ``REQUEST_TOKEN_403_TEMPLATE``
 
@@ -329,6 +321,9 @@ able to diagnose issues from the admin site is useful, however if the volume
 or errors is a problem this can be disabled by setting this value to anything
 other than 'True' or '1'.
 
+* ``REQUEST_TOKEN_ENABLE_SESSION_TOKENS``
+
+Set this to True (False by default) to continue to support session tokens.
 
 Logging
 =======

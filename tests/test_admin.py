@@ -4,6 +4,7 @@ from unittest import mock
 from django.test import TestCase
 from django.utils.timezone import now as tz_now
 from jwt.exceptions import MissingRequiredClaimError
+
 from request_token.admin import RequestTokenAdmin, pretty_print
 from request_token.models import RequestToken
 

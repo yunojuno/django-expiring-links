@@ -27,5 +27,9 @@ LOG_TOKEN_ERRORS = _env_or_setting(
     "1",
 )  # noqa
 
-
 DEFAULT_MAX_USES = _env_or_setting("REQUEST_TOKEN_DEFAULT_MAX_USES", 10)
+
+# Enable use of session tokens - disabled by default
+ENABLE_SESSION_TOKENS = bool(
+    _env_or_setting("REQUEST_TOKEN_ENABLE_SESSION_TOKENS", False)
+)

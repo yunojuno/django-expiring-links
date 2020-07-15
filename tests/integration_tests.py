@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.test import Client, TransactionTestCase
 from django.urls import reverse
+
 from request_token.models import RequestToken, RequestTokenLog, tz_now
 from request_token.settings import JWT_QUERYSTRING_ARG, JWT_SESSION_TOKEN_EXPIRY
 from request_token.templatetags.request_token_tags import request_token

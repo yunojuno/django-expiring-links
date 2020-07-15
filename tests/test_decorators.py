@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.http import HttpRequest, HttpResponse
 from django.test import RequestFactory, TestCase
+
 from request_token.decorators import _get_request_arg, use_request_token
 from request_token.exceptions import ScopeError, TokenNotFoundError
 from request_token.middleware import RequestTokenMiddleware
